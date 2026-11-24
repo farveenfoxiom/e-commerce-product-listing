@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { X, ShoppingBag, CheckCircle2 } from "lucide-react";
 import { useCart } from "../../context/CartContext";
 import { formatPrice } from "../../utils/format";
@@ -11,10 +11,10 @@ export default function CartDrawer() {
   const [view, setView] = useState("cart"); // "cart" | "checkout" | "success"
   const [orderId, setOrderId] = useState("");
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     closeCart();
     setView("cart");
-  };
+  },[closeCart]);
 
   // Close on Escape key
   useEffect(() => {
@@ -23,7 +23,7 @@ export default function CartDrawer() {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isOpen]);
+  }, [isOpen, handleClose]);
 
   // Stop the page behind from scrolling
   useEffect(() => {

@@ -1,5 +1,5 @@
 const BASE_URL = "https://dummyjson.com";
-const NEW_ARRIVALS_COUNT = 12;
+import { NEW_ARRIVALS_COUNT } from "../constants";
 
 // Convert the API shape into the shape our UI uses
 const normalize = (p) => {
