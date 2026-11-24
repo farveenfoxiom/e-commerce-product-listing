@@ -8,7 +8,7 @@ export default function useProducts() {
   const [reloadKey, setReloadKey] = useState(0);
 
   useEffect(() => {
-    let cancelled = false;
+    let cancelled = false; // ignore outdated responses
     setLoading(true);
     setError(null);
 

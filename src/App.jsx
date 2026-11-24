@@ -6,6 +6,7 @@ import Footer from "./components/layout/Footer";
 import CartDrawer from "./components/cart/CartDrawer";
 import ShopPage from "./pages/ShopPage";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
+import ContactPage from "./pages/ContactPage";
 
 // Scroll to the top whenever the route changes
 function ScrollToTop() {
@@ -36,8 +37,13 @@ export default function App() {
       <Navbar />
       <main className="flex-1">
         <Routes>
-          <Route path="/" element={<ShopPage />} />
+          {/* The key makes each mode start with fresh filters */}
+          <Route path="/" element={<ShopPage key="all" mode="all" />} />
+          <Route path="/deals" element={<ShopPage key="deals" mode="deals" />} />
+          <Route path="/new" element={<ShopPage key="new" mode="new" />} />
+          <Route path="/wishlist" element={<ShopPage key="wishlist" mode="wishlist" />} />
           <Route path="/product/:id" element={<ProductDetailsPage />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

@@ -1,4 +1,5 @@
 const BASE_URL = "https://dummyjson.com";
+const NEW_ARRIVALS_COUNT = 12;
 
 // Convert the API shape into the shape our UI uses
 const normalize = (p) => {
@@ -21,6 +22,7 @@ const normalize = (p) => {
     shipping: p.shippingInformation,
     warranty: p.warrantyInformation,
     returnPolicy: p.returnPolicy,
+    isNew: false, // set in fetchProducts (the API has no "new" field)
   };
 };
 
@@ -39,7 +41,17 @@ async function request(path) {
 
 export async function fetchProducts(limit = 100) {
   const data = await request(`/products?limit=${limit}`);
-  return data.products.map(normalize);
+  const products = data.products.map(normalize);
+
+  // The API has no "new" field, so the highest ids count as new arrivals
+  const newestIds = new Set(
+    [...products]
+      .sort((a, b) => b.id - a.id)
+      .slice(0, NEW_ARRIVALS_COUNT)
+      .map((p) => p.id)
+  );
+
+  return products.map((p) => ({ ...p, isNew: newestIds.has(p.id) }));
 }
 
 export async function fetchProductById(id) {
