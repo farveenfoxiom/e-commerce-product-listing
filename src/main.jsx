@@ -6,6 +6,7 @@ import { CartProvider } from "./context/CartContext.jsx";
 import { SearchProvider } from "./context/SearchContext.jsx";
 import { WishlistProvider } from "./context/WishlistContext.jsx";
 import "./index.css";
+import { ProductsProvider } from "./context/ProductsContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -13,7 +14,9 @@ createRoot(document.getElementById("root")).render(
       <CartProvider>
         <WishlistProvider>
           <SearchProvider>
-            <App />
+            <ProductsProvider>
+              <App />
+            </ProductsProvider>
           </SearchProvider>
         </WishlistProvider>
       </CartProvider>

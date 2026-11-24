@@ -42,7 +42,6 @@ function cartReducer(items, action) {
   }
 }
 
-// Restore the cart saved in the browser (if any)
 function loadCart() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);

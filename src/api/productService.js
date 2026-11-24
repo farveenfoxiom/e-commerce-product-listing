@@ -43,7 +43,6 @@ export async function fetchProducts(limit = 100) {
   const data = await request(`/products?limit=${limit}`);
   const products = data.products.map(normalize);
 
-  // The API has no "new" field, so the highest ids count as new arrivals
   const newestIds = new Set(
     [...products]
       .sort((a, b) => b.id - a.id)

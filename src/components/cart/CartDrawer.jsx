@@ -16,7 +16,6 @@ export default function CartDrawer() {
     setView("cart");
   },[closeCart]);
 
-  // Close on Escape key
   useEffect(() => {
     if (!isOpen) return;
     const onKey = (e) => e.key === "Escape" && handleClose();
@@ -34,7 +33,6 @@ export default function CartDrawer() {
   }, [isOpen]);
 
   const handleOrder = () => {
-    // No backend: we simulate a successful order
     setOrderId(`ORD-${Date.now().toString().slice(-6)}`);
     clearCart();
     setView("success");

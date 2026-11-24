@@ -1,6 +1,5 @@
 import { useState } from "react";
 
-// Small form helper: values, touched fields and validation in one place
 export default function useForm(initialValues, validate) {
   const [values, setValues] = useState(initialValues);
   const [touched, setTouched] = useState({});

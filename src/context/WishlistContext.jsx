@@ -3,7 +3,6 @@ import { createContext, useContext, useEffect, useMemo, useState } from "react";
 const WishlistContext = createContext(null);
 const STORAGE_KEY = "shop-wishlist-v1";
 
-// Restore the saved wishlist from the browser (if any)
 function loadWishlist() {
   try {
     const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY));
